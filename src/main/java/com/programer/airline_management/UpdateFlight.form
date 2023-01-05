@@ -67,8 +67,8 @@
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="flightName" alignment="0" max="32767" attributes="0"/>
-                              <Component id="arrival" alignment="0" max="32767" attributes="0"/>
                               <Component id="departure" alignment="0" max="32767" attributes="0"/>
+                              <Component id="arrival" alignment="0" max="32767" attributes="0"/>
                               <Component id="flightId" alignment="0" pref="134" max="32767" attributes="0"/>
                               <Component id="date" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -115,12 +115,12 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="arrival" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="departure" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="departure" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="arrival" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -195,9 +195,9 @@
             <Property name="text" type="java.lang.String" value="Fare Per Pesion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="arrival">
-        </Component>
         <Component class="javax.swing.JTextField" name="departure">
+        </Component>
+        <Component class="javax.swing.JTextField" name="arrival">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -206,12 +206,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Departure"/>
+            <Property name="text" type="java.lang.String" value="Arrival"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Arrival"/>
+            <Property name="text" type="java.lang.String" value="Departure"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">

@@ -29,26 +29,31 @@ public class UpdateFlight extends javax.swing.JDialog {
     public UpdateFlight(java.awt.Frame parent, boolean modal, String id) {
         super(parent, modal);
         initComponents();
-        autoId();
         flightId.setText(id);
+        flightId.setEditable(false);
+        FlightDetails update = new FlightDetails(); // update table
+        update.autoShow();
+        autoId();
+        
     }
     Connection con;
     PreparedStatement pre;
     public void autoId(){
         try {
+            String fId = flightId.getText();
             Class.forName("com.mysql.cj.jdbc.Driver");
             String dbPath = "jdbc:mysql://localhost:3306/airlinedb?useSSL=false";
             String dbUser ="root";
             String dbPass = "sysadm!n123";
             con = (Connection)DriverManager.getConnection(dbPath,dbUser,dbPass);
             java.sql.Statement s = con.createStatement();
-            pre = con.prepareStatement("select * from flight");
+            pre = con.prepareStatement("select * from flight where FlightId = '"+fId+"'");
             ResultSet rs = pre.executeQuery();
             rs.next();
             flightId.setText(rs.getString("FlightId"));
             flightName.setText(rs.getString("FlightName"));
-            arrival.setText(rs.getString("Arrival"));
-            departure.setText(rs.getString("Departure"));
+            departure.setText(rs.getString("Arrival"));
+            arrival.setText(rs.getString("Departure"));
             Date dateNew=(Date) new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("DOB"));
             date.setDate(dateNew);
             seats.setText(rs.getString("NoOfSeatLeft"));
@@ -82,8 +87,8 @@ public class UpdateFlight extends javax.swing.JDialog {
         time = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        arrival = new javax.swing.JTextField();
         departure = new javax.swing.JTextField();
+        arrival = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -110,9 +115,9 @@ public class UpdateFlight extends javax.swing.JDialog {
 
         jLabel5.setText("Date");
 
-        jLabel4.setText("Departure");
+        jLabel4.setText("Arrival");
 
-        jLabel3.setText("Arrival");
+        jLabel3.setText("Departure");
 
         jButton2.setBackground(new java.awt.Color(153, 153, 255));
         jButton2.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
@@ -163,8 +168,8 @@ public class UpdateFlight extends javax.swing.JDialog {
                                 .addGap(47, 47, 47)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(flightName)
-                            .addComponent(arrival)
                             .addComponent(departure)
+                            .addComponent(arrival)
                             .addComponent(flightId, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                             .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
@@ -200,11 +205,11 @@ public class UpdateFlight extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(arrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(departure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(departure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(arrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
@@ -250,8 +255,8 @@ public class UpdateFlight extends javax.swing.JDialog {
         // TODO add your handling code here:
         String FlightId = flightId.getText();
         String FlightName = flightName.getText();
-        String Departure = departure.getText();
-        String Arrival = arrival.getText();
+        String Departure = arrival.getText();
+        String Arrival = departure.getText();
         DateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
         String Date = dt.format(date.getDate());
         String Seat = seats.getText();
@@ -276,6 +281,7 @@ public class UpdateFlight extends javax.swing.JDialog {
 
             numC = pre.executeUpdate();
             JOptionPane.showMessageDialog(null,"Flight Updated");
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

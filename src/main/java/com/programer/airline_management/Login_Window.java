@@ -161,21 +161,20 @@ public class Login_Window extends javax.swing.JFrame {
         
         try {
             
-            String UserName = userName.getText();
+            String Username = userName.getText();
             String Password = password.getText();
-            
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinedb?useSSL=false","root","sysadm!n123");
             
             java.sql.Statement s = con.createStatement();
             pre = con.prepareStatement("select * from user where Username=? and Password=?");
-            pre.setString(1,UserName);
+            pre.setString(1,Username);
             pre.setString(2,Password);
             ResultSet rs;
             rs = pre.executeQuery();
 //            rs.next();
             if(rs.next()){
-                if(UserName.equals("madhab") && Password.equals("123") ){
+                if(Username.equals("madhab") && Password.equals("123") ){
                     AdminWindow frame = new AdminWindow();
                     frame.setVisible(true);
                     this.setVisible(false);

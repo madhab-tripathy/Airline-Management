@@ -27,6 +27,7 @@ public class FlightDetails extends javax.swing.JInternalFrame {
      */
     public FlightDetails() {
         initComponents();
+        Flightid.setEditable(false);
         autoShow();
     }
     
@@ -221,23 +222,6 @@ public class FlightDetails extends javax.swing.JInternalFrame {
             // TODO add your handling code here:
             String fId = Flightid.getText();
             new UpdateFlight(null,true,fId).show();
-            
-            
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            String dbPath = "jdbc:mysql://localhost:3306/airlinedb?useSSL=false";
-//            String dbUser ="root";
-//            String dbPass = "sysadm!n123";
-//            con = (Connection)DriverManager.getConnection(dbPath,dbUser,dbPass);
-//            java.sql.Statement s = con.createStatement();
-//            pre = con.prepareStatement("select * from flight where FlightId=?");
-//            pre.setString(1,fId);
-//            ResultSet rs = pre.executeQuery();
-            
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(FlightDetails.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(FlightDetails.class.getName()).log(Level.SEVERE, null, ex);
-//        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
